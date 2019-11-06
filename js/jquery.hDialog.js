@@ -81,8 +81,10 @@
 			var _self = this.op,
 				t, l,
 				headTpl = '', overlayTpl = '', iframeTpl = '',
-				w = parseInt(_self.width), 
-				h = parseInt(_self.height), 
+				//修改宽高支持百分比
+				thisw=_self.width,thish=_self.height,
+				w = thisw.indexOf('%')>=0 ? $W.width()*parseInt(thisw.replace('%',''))/100 : parseInt(thisw),
+				h = thish.indexOf('%')>=0 ? $W.height()*parseInt(thish.replace('%',''))/100 : parseInt(thish),
 				m = "" + parseInt(-(h/2)) + 'px 0 0 ' + parseInt(-(w/2)) + "px";
         		
 			//显示前的回调
