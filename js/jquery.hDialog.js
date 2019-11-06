@@ -141,7 +141,12 @@
         
 			//默认关闭
 			$(_self.box).modalHide ? $('#HOverlay, #HCloseBtn') : $('#HCloseBtn').off('click').on('click', function() { methods.close(); });
-			
+			//弹层外点击关闭
+			$(document).bind("click", function (e) {
+				if($(e.target).closest(_self.box).length==0 && $(e.target).closest($el).length==0){
+					methods.close();
+				}
+			});
 			//定时关闭
 			if(_self.hideTime != 0) {
 				timer = setTimeout(function() { methods.close(); }, parseInt(_self.hideTime));
